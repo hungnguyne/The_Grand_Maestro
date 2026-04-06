@@ -203,9 +203,19 @@ export async function getMaestroAdvice(userInput: UserInput, apiConfig: ApiConfi
     - Room Material: ${userInput.roomMaterial}
     - Budget: ${userInput.budget}
     
+    CRITICAL LOGIC FOR RECOMMENDATIONS:
+    1. First, identify if the "Existing Equipment" is a SPEAKER or an AMPLIFIER.
+    2. If it is an AMPLIFIER (e.g., Triode TRV-35SE, Accuphase E-280): 
+       - The "OPTIMAL PAIRING STRATEGY" table MUST contain exactly 10 recommended SPEAKERS that pair perfectly with this specific amplifier.
+       - Include a mix of vintage and modern speakers.
+    3. If it is a SPEAKER (e.g., JBL L100, Tannoy Stirling):
+       - The "OPTIMAL PAIRING STRATEGY" table MUST contain exactly 10 recommended AMPLIFIERS: 5 solid-state (bán dẫn) and 5 tube (đèn).
+    4. If "None" or ambiguous:
+       - Suggest a complete matching set (Speaker + Amp).
+    
     The report MUST include:
     1. A catchy title.
-    2. A table named "OPTIMAL PAIRING STRATEGY" with columns: Selection, Model, Tonal Characteristics, Pairing Logic, Evaluation, Reference Price. The table MUST contain exactly 10 recommendations: 5 solid-state amplifiers (amply bán dẫn) and 5 tube amplifiers (amply đèn).
+    2. A table named "OPTIMAL PAIRING STRATEGY" with columns: Selection, Model, Tonal Characteristics, Pairing Logic, Evaluation, Reference Price.
     3. Detailed analysis of the room acoustics and synergy.
     4. A section for "MAESTRO'S GOLDEN TIPS".
     
@@ -222,7 +232,7 @@ export async function getMaestroAdvice(userInput: UserInput, apiConfig: ApiConfi
     [/SOUND_PROFILE_JSON]
     
     [IMAGE_PROMPT]
-A cinematic, high-end audiophile listening room. VISUAL REQUIREMENT: The image MUST accurately depict the visual style of the user's existing equipment (${userInput.existingEquipment || "None"}) and the recommended [🏆 Best Solid-State] or [🏆 Best Tube]. For example, if it's a vintage JBL, describe wood cabinets and blue baffles; if it's a modern silver amp, describe brushed aluminum. The setup should be arranged professionally in the room described (${userInput.roomSize}m2, ${userInput.roomMaterial}). Professional acoustic treatments, warm ambient lighting, 8k resolution, photorealistic architectural photography style.
+A cinematic, high-end audiophile listening room. VISUAL REQUIREMENT: The image MUST accurately depict the visual style of the user's existing equipment (${userInput.existingEquipment || "None"}) and the top recommended pairing from your list. For example, if it's a vintage JBL, describe wood cabinets and blue baffles; if it's a modern silver amp, describe brushed aluminum. The setup should be arranged professionally in the room described (${userInput.roomSize}m2, ${userInput.roomMaterial}). Professional acoustic treatments, warm ambient lighting, 8k resolution, photorealistic architectural photography style.
 [/IMAGE_PROMPT]
   `;
 
